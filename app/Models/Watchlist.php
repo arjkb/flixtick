@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Watchlist extends Model
 {
     use HasFactory;
+
+    /**
+     * Get the movie that owns this watchlist record.
+     *
+     * @return void
+     */
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
+    }
 }
