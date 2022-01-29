@@ -1,5 +1,11 @@
 @extends('base')
 
 @section('content')
-<h3>This is the landing page</h3>
+@isset($moviesInWatchlist)
+<ol>
+    @foreach($moviesInWatchlist as $watchlistitem)
+    <li>{{ $watchlistitem->movie->title }}</li>
+    @endforeach
+</ol>
+@endisset
 @endsection
