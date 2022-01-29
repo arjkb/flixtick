@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -20,6 +22,11 @@ class LoginController extends Controller
             'password_confirmation' => 'required|string',
         ]);
 
-        dd('validated');
+        $user = new User;
+        $user->username = $credentials['username'];
+        $user->password = Hash::make($credentials['password']);
+        $user->save();
+
+        return redirect('auth/login')->with('flash', 'User registered!');
     }
 }
