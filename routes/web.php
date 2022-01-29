@@ -28,3 +28,5 @@ Route::prefix('auth')->group(function () {
         Route::get('', fn () => view('auth.login'));
     });
 });
+
+Route::get('home', fn () => view('home'));
