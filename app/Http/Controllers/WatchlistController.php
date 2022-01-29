@@ -12,7 +12,19 @@ class WatchlistController extends Controller
 
     public function __construct()
     {
-        $this->watchlist = new Watchlist;
+        $this->watchlist = new WatchlistUtility;
+    }
+
+    /**
+     * Get the watchlist for the logged in user.
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $moviesInWatchlist = Watchlist::where('user_id', auth()->user()->id)->orderBy('asc')->get();
+
+        return view('home', compact('moviesInWatchlist'));
     }
 
     /**
