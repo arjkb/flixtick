@@ -28,12 +28,14 @@
                         @csrf
                         <button type="submit" class="btn btn-link">Sign Out</button>
                     </form>
+                    <span class="navbar-text">Hello {{ auth()->user()->username }}</span>
                     @else
                     <a class="nav-link @if(url()->current() === url('auth/login')) active @endif" href="{{ url('auth/login') }}">Log In</a>
                     <a class="nav-link @if(url()->current() === url('auth/signup')) active @endif" href="{{ url('auth/signup') }}">Sign Up</a>
                     @endif
                 </div>
             </div>
+
         </div>
     </nav>
     <div class="container">
