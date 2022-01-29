@@ -13,6 +13,25 @@
 </head>
 
 <body class="antialiased">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">FlixTick</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="{{ url('home') }}">Home</a>
+                    @if(auth()->check())
+                    <form action="{{ url('auth/logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-link">Sign Out</button>
+                    </form>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         @if(session('flash'))
         <div class="alert alert-primary">
