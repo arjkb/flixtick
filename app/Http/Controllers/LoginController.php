@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     /**
-     * Sign up a new user
+     * Sign up a new user.
      *
      * @param Request $request
      * @return void
@@ -32,7 +32,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Log in a user
+     * Log in a user.
      *
      * @param Request $request
      * @return void
@@ -52,5 +52,22 @@ class LoginController extends Controller
         return back()->withErrors([
             'credentials' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('auth/login');
     }
 }

@@ -28,6 +28,8 @@ Route::prefix('auth')->group(function () {
         Route::get('', fn () => view('auth.login'));
         Route::post('', [LoginController::class, 'authenticate']);
     });
+
+    Route::post('logout', [LoginController::class, 'logout']);
 });
 
 Route::get('home', fn () => view('home'));
