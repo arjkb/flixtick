@@ -14,6 +14,11 @@
 
 <body class="antialiased">
     <div class="container">
+        @if(session('flash'))
+        <div class="alert alert-primary">
+            {{ session('flash') }}
+        </div>
+        @endif
         @yield('content')
     </div>
 
