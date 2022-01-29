@@ -26,6 +26,7 @@ Route::prefix('auth')->group(function () {
 
     Route::prefix('login')->group(function () {
         Route::get('', fn () => view('auth.login'));
+        Route::post('', [LoginController::class, 'authenticate']);
     });
 });
 

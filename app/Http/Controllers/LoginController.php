@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
@@ -28,5 +29,28 @@ class LoginController extends Controller
         $user->save();
 
         return redirect('auth/login')->with('flash', 'User registered!');
+    }
+
+    /**
+     * Log in a user
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            dd('valid login');
+        }
+
+        // will reach here only if valid login
+        return back()->withErrors([
+            'credentials' => 'The provided credentials do not match our records.',
+        ]);
     }
 }
