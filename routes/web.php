@@ -35,4 +35,10 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('home', [WatchlistController::class, 'index']);
+
+    Route::controller(WatchlistController::class)->group(function () {
+        Route::prefix('watchlist')->group(function () {
+            Route::post('', 'addToWatchList');
+        });
+    });
 });
