@@ -43,7 +43,7 @@ class WatchlistController extends Controller
         $this->watchlist->addToWatchlist(
             auth()->user()->id,
             $validated['title'],
-            $validated['year']
+            $validated['year'] ?? null
         );
 
         return redirect('home')->with('flash', 'Movie added to watchlist');
