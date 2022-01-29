@@ -45,7 +45,9 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            dd('valid login');
+            $request->session()->regenerate();
+
+            return redirect('home');
         }
 
         // will reach here only if valid login
