@@ -21,12 +21,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="{{ url('home') }}">Home</a>
+                    <!-- TODO: convert nav links to its own component -->
+                    <a class="nav-link @if(url()->current() === url('home')) active @endif" aria-current="page" href="{{ url('home') }}">Home</a>
                     @if(auth()->check())
                     <form action="{{ url('auth/logout') }}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-link">Sign Out</button>
                     </form>
+                    @else
+                    <a class="nav-link @if(url()->current() === url('auth/login')) active @endif" href="{{ url('auth/login') }}">Log In</a>
+                    <a class="nav-link @if(url()->current() === url('auth/signup')) active @endif" href="{{ url('auth/signup') }}">Sign Up</a>
                     @endif
                 </div>
             </div>
