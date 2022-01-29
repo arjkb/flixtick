@@ -25,11 +25,13 @@ Route::prefix('auth')->group(function () {
     });
 
     Route::prefix('login')->group(function () {
-        Route::get('', fn () => view('auth.login'));
+        Route::get('', fn () => view('auth.login'))->name('login');
         Route::post('', [LoginController::class, 'authenticate']);
     });
 
     Route::post('logout', [LoginController::class, 'logout']);
 });
 
-Route::get('home', fn () => view('home'));
+Route::middleware('auth')->group(function () {
+    Route::get('home', fn () => view('home'));
+});
