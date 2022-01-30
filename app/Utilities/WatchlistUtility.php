@@ -45,26 +45,24 @@ class WatchlistUtility
     /**
      * Mark a given watchlist item as watched.
      *
-     * @param integer $watchlistId
+     * @param Watchlist $watchlistItem
      * @return void
      */
-    public function markWatchlistItemAsWatched(int $watchlistId)
+    public function markAsWatched(Watchlist $watchlistItem)
     {
-        $watchlistitem = Watchlist::find($watchlistId);
-        $watchlistitem->marked_seen_at = now();
-        $watchlistitem->save();
+        $watchlistItem->marked_seen_at = now();
+        $watchlistItem->save();
     }
 
     /**
      * Mark a given watchlist item as unwatched.
      *
-     * @param integer $watchlistId
+     * @param Watchlist $watchlistItem
      * @return void
      */
-    public function markWatchlistItemAsUnwatched(int $watchlistId)
+    public function markAsUnwatched(Watchlist $watchlistItem)
     {
-        $watchlistitem = Watchlist::find($watchlistId);
-        $watchlistitem->marked_seen_at = null;
-        $watchlistitem->save();
+        $watchlistItem->marked_seen_at = null;
+        $watchlistItem->save();
     }
 }

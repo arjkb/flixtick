@@ -111,7 +111,7 @@ class WatchlistController extends Controller
 
         $this->authorize('update', $watchlistItem);
 
-        $this->watchlist->markWatchlistItemAsWatched($id);
+        $this->watchlist->markAsWatched($watchlistItem);
 
         return back()->with('flash-success', "'{$watchlistItem->movie->title}' marked as watched");
     }
@@ -128,7 +128,7 @@ class WatchlistController extends Controller
 
         $this->authorize('update', $watchlistItem);
 
-        $this->watchlist->markWatchlistItemAsUnwatched($id);
+        $this->watchlist->markAsUnwatched($watchlistItem);
 
         return back()->with('flash-warning', "'{$watchlistItem->movie->title}' marked as unwatched");
     }
