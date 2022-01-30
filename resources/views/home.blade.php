@@ -19,10 +19,29 @@
 </form>
 
 @isset($moviesInWatchlist)
-<ol>
-    @foreach($moviesInWatchlist as $watchlistitem)
-    <li>{{ $watchlistitem->movie->title }}</li>
-    @endforeach
-</ol>
+<table class="table table-hover mt-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Added On</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($moviesInWatchlist as $watchlistitem)
+        <tr>
+            <th scope="row">{{ $loop->iteration }}</th>
+            <td>{{ $watchlistitem->movie->title }}</td>
+            <td>{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
+            <td>
+                <form class="row row-cols-lg-auto g-3 align-items-center">
+                    <button type="submit" class="btn btn-sm btn-outline-primary">Mark as watched</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 @endisset
 @endsection
