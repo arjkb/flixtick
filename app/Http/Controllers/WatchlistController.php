@@ -107,13 +107,13 @@ class WatchlistController extends Controller
      */
     public function markAsWatched(Request $request, int $id)
     {
-        // TODO: authorization
+        $watchlistItem = Watchlist::find($id);
+
+        $this->authorize('update', $watchlistItem);
 
         $this->watchlist->markWatchlistItemAsWatched($id);
 
-        $title = Watchlist::find($id)->movie->title;
-
-        return back()->with('flash-success', "'$title' marked as watched");
+        return back()->with('flash-success', "'{$watchlistItem->movie->title}' marked as watched");
     }
 
     /**
@@ -124,12 +124,12 @@ class WatchlistController extends Controller
      */
     public function markAsUnwatched(int $id)
     {
-        // TODO: authorization
+        $watchlistItem = Watchlist::find($id);
+
+        $this->authorize('update', $watchlistItem);
 
         $this->watchlist->markWatchlistItemAsUnwatched($id);
 
-        $title = Watchlist::find($id)->movie->title;
-
-        return back()->with('flash-warning', "'$title' marked as unwatched");
+        return back()->with('flash-warning', "'{$watchlistItem->movie->title}' marked as unwatched");
     }
 }
