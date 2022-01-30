@@ -32,7 +32,9 @@
 
     <dt class="col-sm-3"></dt>
     <dd class="col-sm-9">
-        <form action="" method="post">
+        <form action="{{ route('watchlist.destroy', ['id' => $watchlistItem->id]) }}" method="post">
+            @method('DELETE')
+            @csrf
             <button type="submit" class="btn btm-sm btn-outline-danger">Remove <em>'{{ $watchlistItem->movie->title }}'</em> from watchlist</button>
         </form>
     </dd>

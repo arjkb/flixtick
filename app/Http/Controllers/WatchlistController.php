@@ -53,6 +53,20 @@ class WatchlistController extends Controller
     }
 
     /**
+     * Remove a record from the watchlist of a user.
+     *
+     * @param integer $watchlistId
+     * @return void
+     */
+    public function destroy(int $watchlistId)
+    {
+        $w = Watchlist::find($watchlistId);
+        $w->delete();
+
+        return redirect('home')->with('flash-danger', $w->movie->title . ' removed from your watchlist');
+    }
+
+    /**
      * Add a movie to watchlist of the user
      *
      * @param Request $request

@@ -56,6 +56,13 @@
             {{ session('flash-warning') }}
         </div>
         @endif
+
+        @if(session('flash-danger'))
+        <div class="alert alert-danger">
+            {{ session('flash-danger') }}
+        </div>
+        @endif
+
         @yield('content')
     </div>
 
