@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
             Route::prefix('{id}')->group(function () {
                 Route::get('', 'show')->name('show');
                 Route::post('mark-watched', 'markAsWatched')->name('mark-watched');
+                Route::post('mark-unwatched', 'markAsUnwatched')->name('mark-unwatched');
             });
         });
     });

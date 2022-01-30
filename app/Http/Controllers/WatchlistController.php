@@ -84,4 +84,19 @@ class WatchlistController extends Controller
 
         return back()->with('flash', 'Movie marked as watched');
     }
+
+    /**
+     * Mark a movie as unwatched.
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function markAsUnwatched(int $id)
+    {
+        // TODO: authorization
+
+        $this->watchlist->markWatchlistItemAsUnwatched($id);
+
+        return back()->with('flash', 'Movie marked as unwatched');
+    }
 }

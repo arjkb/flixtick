@@ -18,8 +18,8 @@
     <dt class="col-sm-3"></dt>
     <dd class="col-sm-9">
         @if(isset($watchlistItem->marked_seen_at))
-        <form action="" method="post">
-            <!-- TODO: add form action -->
+        <form action="{{ route('watchlist.mark-unwatched', ['id' => $watchlistItem->id]) }}" method="post">
+            @csrf
             <button type="submit" class="btn btm-sm btn-outline-warning">Mark <em>'{{ $watchlistItem->movie->title }}'</em> as unwatched</button>
         </form>
         @else
