@@ -24,7 +24,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
-            <th scope="col">Added On</th>
+            <th scope="col" class="d-none d-md-table-cell">Added On</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -33,7 +33,7 @@
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $watchlistitem->movie->title }}</td>
-            <td>{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
+            <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
             <td>
                 <form class="row row-cols-lg-auto g-3 align-items-center">
                     <button type="submit" class="btn btn-sm btn-outline-primary">Mark as watched</button>
