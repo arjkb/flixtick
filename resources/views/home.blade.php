@@ -56,9 +56,10 @@
             </td>
             <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
             <td>
-                <form action="" method="post" class="row row-cols-lg-auto g-3 align-items-center">
+                <form action="{{ route('watchlist.mark-unwatched', ['id' => $watchlistitem->id]) }}" method="post" class="row row-cols-lg-auto g-3 align-items-center">
+                    @csrf
                     <div class="col-12">
-                        <button type="submit" class="btn btn-sm btn-outline-primary" @isset($watchlistitem->marked_seen_at) disabled @endisset>Mark as watched</button>
+                        <button type="submit" class="btn btn-sm btn-outline-warning">Mark as unwatched</button>
                     </div>
                 </form>
             </td>
