@@ -39,7 +39,9 @@
             <td>
                 <form action="{{ route('mark-watched', ['id' => $watchlistitem->id]) }}" method="post" class="row row-cols-lg-auto g-3 align-items-center">
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-outline-primary">Mark as watched</button>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Mark as watched</button>
+                    </div>
                 </form>
             </td>
         </tr>
@@ -55,7 +57,9 @@
             <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
             <td>
                 <form action="" method="post" class="row row-cols-lg-auto g-3 align-items-center">
-                    <button type="submit" class="btn btn-sm btn-outline-primary" @isset($watchlistitem->marked_seen_at) disabled @endisset>Mark as watched</button>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-sm btn-outline-primary" @isset($watchlistitem->marked_seen_at) disabled @endisset>Mark as watched</button>
+                    </div>
                 </form>
             </td>
         </tr>
