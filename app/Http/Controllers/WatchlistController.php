@@ -50,13 +50,15 @@ class WatchlistController extends Controller
             'year' => 'sometimes|size:4',
         ]);
 
-        $this->watchlist->addToWatchlist(
+        $watchlistItemId = $this->watchlist->addToWatchlist(
             auth()->user()->id,
             $validated['title'],
             $validated['year'] ?? null
         );
 
-        return redirect('home')->with('flash', 'Movie added to watchlist');
+        $flashMessage = isset($watchlistItemId) ? 'Movie added to watchlist' : 'Title already in your watchlist. Not added.';
+
+        return redirect('home')->with('flash', $flashMessage);
     }
 
     /**
