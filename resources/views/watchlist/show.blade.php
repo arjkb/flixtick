@@ -6,7 +6,7 @@
 <dl class="row mt-5">
     @isset($watchlistItem->marked_seen_at)
     <dt class="col-sm-3">Marked watched at</dt>
-    <dd class="col-sm-9">{{ Carbon\Carbon::parse($watchlistItem->marked_seen_at)->diffForHumans() }}, on {{ $watchlistItem->marked_seen_at }} UTC</dd>
+    <dd class="col-sm-9">{{ $watchlistItem->marked_seen_at->diffForHumans() }}, on {{ $watchlistItem->marked_seen_at }} UTC</dd>
     @endisset
 
     <dt class="col-sm-3">Created at</dt>

@@ -10,6 +10,7 @@ class Watchlist extends Model
     use HasFactory;
 
     protected $casts = [
+        'marked_seen_at' => 'datetime',
         'user_id' => 'integer',
     ];
 
