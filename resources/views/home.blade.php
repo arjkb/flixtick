@@ -32,11 +32,16 @@
         @foreach($moviesInWatchlist as $watchlistitem)
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
-            <td>{{ $watchlistitem->movie->title }}</td>
+            <td>
+                {{ $watchlistitem->movie->title }}
+                @isset($watchlistitem->marked_seen_at)
+                <br><span class="text-muted"><small>Marked seen at {{ $watchlistitem->marked_seen_at }}</small></span>
+                @endisset
+            </td>
             <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
             <td>
                 <form class="row row-cols-lg-auto g-3 align-items-center">
-                    <button type="submit" class="btn btn-sm btn-outline-primary">Mark as watched</button>
+                    <button type="submit" class="btn btn-sm btn-outline-primary" @isset($watchlistitem->marked_seen_at) disabled @endisset>Mark as watched</button>
                 </form>
             </td>
         </tr>
