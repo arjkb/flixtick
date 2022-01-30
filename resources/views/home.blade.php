@@ -1,6 +1,19 @@
 @extends('base')
 
 @section('content')
+<div>
+    <dl class="row mt-5">
+        <dt class="col-sm-3">Unseen count</dt>
+        <dd class="col-sm-9">{{ count($unwatchedMovies) }}</dd>
+
+        <dt class="col-sm-3">Seen count</dt>
+        <dd class="col-sm-9">{{ count($watchedMovies) }}</dd>
+
+        <dt class="col-sm-3">Total</dt>
+        <dd class="col-sm-9">{{ count($unwatchedMovies) + count($watchedMovies) }}</dd>
+    </dl>
+</div>
+
 <form class="row row-cols-lg-auto g-3 align-items-center mt-3" action="{{ url('watchlist') }}" method="post">
     @csrf
     <div class="col-12">
