@@ -22,9 +22,19 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $moviesInWatchlist = Watchlist::with('movie')->where('user_id', auth()->user()->id)->get()->sortBy('movie.title', SORT_NATURAL | SORT_FLAG_CASE);
+        $unwatchedMovies = Watchlist::with('movie')
+        ->where('user_id', auth()->user()->id)
+            ->whereNull('marked_seen_at')
+            ->get()
+            ->sortBy('movie.title', SORT_NATURAL | SORT_FLAG_CASE);
 
-        return view('home', compact('moviesInWatchlist'));
+        $watchedMovies = Watchlist::with('movie')
+        ->where('user_id', auth()->user()->id)
+            ->whereNotNull('marked_seen_at')
+            ->get()
+            ->sortBy('movie.title', SORT_NATURAL | SORT_FLAG_CASE);
+
+        return view('home', compact('unwatchedMovies', 'watchedMovies'));
     }
 
     /**

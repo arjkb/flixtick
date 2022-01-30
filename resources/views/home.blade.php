@@ -18,7 +18,7 @@
     </div>
 </form>
 
-@isset($moviesInWatchlist)
+@if(isset($unwatchedMovies) || isset($watchedMovies))
 <table class="table table-hover mt-3">
     <thead>
         <tr>
@@ -29,19 +29,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($moviesInWatchlist as $watchlistitem)
+        @foreach($unwatchedMovies as $watchlistitem)
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>
                 {{ $watchlistitem->movie->title }}
-                @isset($watchlistitem->marked_seen_at)
-                <br><span class="text-muted"><small>Marked seen at {{ $watchlistitem->marked_seen_at }}</small></span>
-                @endisset
             </td>
             <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
             <td>
                 <form action="{{ route('mark-watched', ['id' => $watchlistitem->id]) }}" method="post" class="row row-cols-lg-auto g-3 align-items-center">
                     @csrf
+                    <button type="submit" class="btn btn-sm btn-outline-primary">Mark as watched</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+
+        @foreach($watchedMovies as $watchlistitem)
+        <tr class="text-muted">
+            <th scope="row">{{ $loop->iteration + count($unwatchedMovies) }}</th>
+            <td>
+                {{ $watchlistitem->movie->title }}
+                <br><span class="text-muted"><small>Marked seen at {{ $watchlistitem->marked_seen_at }}</small></span>
+            </td>
+            <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
+            <td>
+                <form action="" method="post" class="row row-cols-lg-auto g-3 align-items-center">
                     <button type="submit" class="btn btn-sm btn-outline-primary" @isset($watchlistitem->marked_seen_at) disabled @endisset>Mark as watched</button>
                 </form>
             </td>
@@ -49,5 +62,5 @@
         @endforeach
     </tbody>
 </table>
-@endisset
+@endif
 @endsection
