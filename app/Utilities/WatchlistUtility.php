@@ -17,14 +17,15 @@ class WatchlistUtility
 
     /**
      * Add movie to the given user's watchlist.
-     * 
+     *
      * Add the movie to the movies table if it's not already there.
      *
      * @param integer $userId
      * @param string $title
      * @param string|null $year
+     * @return integer|null
      */
-    public function addToWatchlist(int $userId, string $title, ?string $year)
+    public function addToWatchlist(int $userId, string $title, ?string $year): int|null
     {
         $movieId = $this->movie->addMovie($title, $year);
 
