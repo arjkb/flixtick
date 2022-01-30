@@ -37,6 +37,12 @@ class WatchlistController extends Controller
         return view('home', compact('unwatchedMovies', 'watchedMovies'));
     }
 
+    /**
+     * Show a watchlist item.
+     *
+     * @param integer $watchlistId
+     * @return void
+     */
     public function show(int $watchlistId)
     {
         // TODO: authorization
