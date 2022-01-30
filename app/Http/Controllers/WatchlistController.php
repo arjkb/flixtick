@@ -63,7 +63,7 @@ class WatchlistController extends Controller
         $w = Watchlist::find($watchlistId);
         $w->delete();
 
-        return redirect('home')->with('flash-danger', $w->movie->title . ' removed from your watchlist');
+        return redirect('home')->with('flash-danger', "'{$w->movie->title}' removed from your watchlist");
     }
 
     /**
@@ -79,15 +79,24 @@ class WatchlistController extends Controller
             'year' => 'sometimes|size:4',
         ]);
 
+        $title = $validated['title'];
+
         $watchlistItemId = $this->watchlist->addToWatchlist(
             auth()->user()->id,
-            $validated['title'],
+            $title,
             $validated['year'] ?? null
         );
 
-        $flashMessage = isset($watchlistItemId) ? 'Movie added to watchlist' : 'Title already in your watchlist. Not added.';
 
-        return redirect('home')->with('flash', $flashMessage);
+        if ($watchlistItemId) {
+            $flashMessage = "'$title' added to your watchlist";
+            $flashType = 'flash-success';
+        } else {
+            $flashMessage = "'$title' is already in your watchlist; not added again";
+            $flashType = 'flash-warning';
+        }
+
+        return redirect('home')->with($flashType, $flashMessage);
     }
 
     /**
@@ -102,7 +111,9 @@ class WatchlistController extends Controller
 
         $this->watchlist->markWatchlistItemAsWatched($id);
 
-        return back()->with('flash-success', Watchlist::find($id)->movie->title . ' marked as watched');
+        $title = Watchlist::find($id)->movie->title;
+
+        return back()->with('flash-success', "'$title' marked as watched");
     }
 
     /**
@@ -117,6 +128,8 @@ class WatchlistController extends Controller
 
         $this->watchlist->markWatchlistItemAsUnwatched($id);
 
-        return back()->with('flash-warning', Watchlist::find($id)->movie->title . ' marked as unwatched');
+        $title = Watchlist::find($id)->movie->title;
+
+        return back()->with('flash-warning', "'$title' marked as unwatched");
     }
 }
