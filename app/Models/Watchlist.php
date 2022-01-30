@@ -9,6 +9,10 @@ class Watchlist extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
+
     /**
      * Get the movie that owns this watchlist record.
      *
