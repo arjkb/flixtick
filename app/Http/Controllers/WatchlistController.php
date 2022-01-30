@@ -22,7 +22,7 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $moviesInWatchlist = Watchlist::where('user_id', auth()->user()->id)->orderBy('asc')->get();
+        $moviesInWatchlist = Watchlist::with('movie')->where('user_id', auth()->user()->id)->get()->sortBy('movie.title', SORT_NATURAL | SORT_FLAG_CASE);
 
         return view('home', compact('moviesInWatchlist'));
     }
