@@ -33,7 +33,7 @@
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>
-                {{ $watchlistitem->movie->title }}
+                <a href="{{ route('watchlist.show', ['id' => $watchlistitem->id]) }}">{{ $watchlistitem->movie->title }}</a>
             </td>
             <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>
             <td>
@@ -51,7 +51,7 @@
         <tr class="text-muted">
             <th scope="row">{{ $loop->iteration + count($unwatchedMovies) }}</th>
             <td>
-                {{ $watchlistitem->movie->title }}
+                <a class="link-secondary" href="{{ route('watchlist.show', ['id' => $watchlistitem->id]) }}">{{ $watchlistitem->movie->title }}</a>
                 <br><span class="text-muted"><small>Marked seen at {{ $watchlistitem->marked_seen_at }}</small></span>
             </td>
             <td class="d-none d-md-table-cell">{{ $watchlistitem->movie->created_at?->diffForHumans() }}</td>

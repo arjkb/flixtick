@@ -37,6 +37,15 @@ class WatchlistController extends Controller
         return view('home', compact('unwatchedMovies', 'watchedMovies'));
     }
 
+    public function show(int $watchlistId)
+    {
+        // TODO: authorization
+
+        $watchlistItem = Watchlist::find($watchlistId);
+
+        return view('watchlist.show', compact('watchlistItem'));
+    }
+
     /**
      * Add a movie to watchlist of the user
      *
@@ -73,6 +82,6 @@ class WatchlistController extends Controller
 
         $this->watchlist->markWatchlistItemAsWatched($id);
 
-        return redirect('home')->with('flash', 'Movie marked as watched');
+        return back()->with('flash', 'Movie marked as watched');
     }
 }
