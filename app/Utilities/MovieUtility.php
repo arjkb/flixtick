@@ -3,6 +3,7 @@
 namespace App\Utilities;
 
 use App\Models\Movie;
+use Illuminate\Support\Str;
 
 class MovieUtility
 {
@@ -17,7 +18,8 @@ class MovieUtility
      */
     public function addMovie(string $title, ?string $year): int
     {
-        $movie = Movie::where('title', 'like', $title)->first();
+        $normalizedTitle = Str::of($title)->explode(' ')->filter()->implode(' '); // get rid of extra whitespsaces
+        $movie = Movie::where('title', 'like', $normalizedTitle)->first();
         if (is_null($movie)) {
             $movie = new Movie;
             $movie->title = $title;
