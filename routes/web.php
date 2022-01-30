@@ -39,6 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(WatchlistController::class)->group(function () {
         Route::prefix('watchlist')->group(function () {
             Route::post('', 'addToWatchList');
+            Route::prefix('{id}')->group(function () {
+                Route::post('mark-watched', [WatchlistController::class, 'markAsWatched'])->name('mark-watched');
+            });
         });
     });
 });

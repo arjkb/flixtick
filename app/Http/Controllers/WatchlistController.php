@@ -48,4 +48,19 @@ class WatchlistController extends Controller
 
         return redirect('home')->with('flash', 'Movie added to watchlist');
     }
+
+    /**
+     * Mark a movie as watched
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function markAsWatched(Request $request, int $id)
+    {
+        // TODO: authorization
+
+        $this->watchlist->markWatchlistItemAsWatched($id);
+
+        return redirect('home')->with('flash', 'Movie marked as watched');
+    }
 }

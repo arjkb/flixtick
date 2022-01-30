@@ -33,4 +33,17 @@ class WatchlistUtility
         $watchlist->movie_id = $movieId;
         $watchlist->save();
     }
+
+    /**
+     * Mark a given watchlist item as watched.
+     *
+     * @param integer $watchlistId
+     * @return void
+     */
+    public function markWatchlistItemAsWatched(int $watchlistId)
+    {
+        $watchlistitem = Watchlist::find($watchlistId);
+        $watchlistitem->marked_seen_at = now();
+        $watchlistitem->save();
+    }
 }
