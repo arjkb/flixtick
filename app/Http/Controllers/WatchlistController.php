@@ -61,6 +61,9 @@ class WatchlistController extends Controller
     public function destroy(int $watchlistId)
     {
         $w = Watchlist::find($watchlistId);
+
+        $this->authorize('update', $w);
+
         $w->delete();
 
         return redirect('home')->with('flash-danger', "'{$w->movie->title}' removed from your watchlist");
