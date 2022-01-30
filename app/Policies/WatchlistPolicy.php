@@ -25,12 +25,12 @@ class WatchlistPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Watchlist  $watchlist
+     * @param  \App\Models\Watchlist  $watchlistItem
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Watchlist $watchlist)
+    public function view(User $user, Watchlist $watchlistItem)
     {
-        //
+        return $user->id === $watchlistItem->user_id;
     }
 
     /**
@@ -48,7 +48,7 @@ class WatchlistPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Watchlist  $watchlist
+     * @param  \App\Models\Watchlist  $watchlistItem
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, Watchlist $watchlistItem)

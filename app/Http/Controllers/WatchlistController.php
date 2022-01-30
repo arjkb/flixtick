@@ -45,9 +45,9 @@ class WatchlistController extends Controller
      */
     public function show(int $watchlistId)
     {
-        // TODO: authorization
-
         $watchlistItem = Watchlist::find($watchlistId);
+
+        $this->authorize('view', $watchlistItem);
 
         return view('watchlist.show', compact('watchlistItem'));
     }
