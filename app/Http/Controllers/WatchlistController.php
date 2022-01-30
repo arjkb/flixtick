@@ -82,7 +82,9 @@ class WatchlistController extends Controller
 
         $this->watchlist->markWatchlistItemAsWatched($id);
 
-        return back()->with('flash-success', Watchlist::find($id)->movie->title . ' marked as watched');
+        return back()
+        ->with('title', Watchlist::find($id)->movie->title)
+        ->with('flash-watchlist-success', 'marked as watched');
     }
 
     /**
@@ -97,6 +99,8 @@ class WatchlistController extends Controller
 
         $this->watchlist->markWatchlistItemAsUnwatched($id);
 
-        return back()->with('flash-warning', Watchlist::find($id)->movie->title . ' marked as unwatched');
+        return back()
+        ->with('title', Watchlist::find($id)->movie->title)
+        ->with('flash-watchlist-warning', 'marked as unwatched');
     }
 }

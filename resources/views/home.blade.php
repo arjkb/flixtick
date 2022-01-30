@@ -1,6 +1,19 @@
 @extends('base')
 
 @section('content')
+
+@if(session('flash-watchlist-success'))
+<div class="alert alert-success">
+    <em>{{ session('title') }}</em> {{ session('flash-watchlist-success') }}
+</div>
+@endif
+
+@if(session('flash-watchlist-warning'))
+<div class="alert alert-warning">
+    <em>{{ session('title') }}</em> {{ session('flash-watchlist-warning') }}
+</div>
+@endif
+
 <form class="row row-cols-lg-auto g-3 align-items-center mt-3" action="{{ url('watchlist') }}" method="post">
     @csrf
     <div class="col-12">
