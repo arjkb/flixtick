@@ -24,8 +24,6 @@
         @enderror
     </div>
 
-    <!-- TODO: add the year field -->
-
     <div class="col-12">
         <button type="submit" class="btn btn-sm btn-outline-primary">Add movie to watchlist</button>
     </div>

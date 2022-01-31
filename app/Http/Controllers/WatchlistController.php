@@ -78,18 +78,12 @@ class WatchlistController extends Controller
     public function addToWatchlist(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string',
-            'year' => 'sometimes|size:4',
+            'title' => 'required|string'
         ]);
 
         $title = $validated['title'];
 
-        $watchlistItemId = $this->watchlist->addToWatchlist(
-            auth()->user()->id,
-            $title,
-            $validated['year'] ?? null
-        );
-
+        $watchlistItemId = $this->watchlist->addToWatchlist(auth()->user()->id, $title);
 
         if ($watchlistItemId) {
             $flashMessage = "'$title' added to your watchlist";

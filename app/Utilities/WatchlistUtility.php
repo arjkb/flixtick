@@ -22,12 +22,11 @@ class WatchlistUtility
      *
      * @param integer $userId
      * @param string $title
-     * @param string|null $year
      * @return integer|null
      */
-    public function addToWatchlist(int $userId, string $title, ?string $year): int|null
+    public function addToWatchlist(int $userId, string $title): int|null
     {
-        $movieId = $this->movie->addMovie($title, $year);
+        $movieId = $this->movie->addMovie($title);
 
         if (Watchlist::where('user_id', $userId)->where('movie_id', $movieId)->exists()) {
             // the title is already in the user's watchlist; abort
