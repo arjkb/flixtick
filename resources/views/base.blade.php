@@ -15,7 +15,7 @@
 <body class="antialiased">
     <nav class="navbar navbar-expand-sm navbar-light bg-light mb-2">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">FlixTick</a>
+            <a class="navbar-brand" href="{{ url('/') }}">FlixTick</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
