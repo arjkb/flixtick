@@ -66,7 +66,7 @@ class WatchlistController extends Controller
 
         $w->delete();
 
-        return redirect('home')->with('flash-danger', "'{$w->movie->title}' removed from your watchlist");
+        return redirect('/')->with('flash-danger', "'{$w->movie->title}' removed from your watchlist");
     }
 
     /**
@@ -93,7 +93,7 @@ class WatchlistController extends Controller
             $flashType = 'flash-warning';
         }
 
-        return redirect('home')->with($flashType, $flashMessage);
+        return redirect('/')->with($flashType, $flashMessage);
     }
 
     /**

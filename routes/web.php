@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::prefix('auth')->group(function () {
     Route::prefix('signup')->group(function () {
         Route::get('', fn () => view('auth.signup'));
@@ -34,7 +30,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('home', [WatchlistController::class, 'index']);
+    Route::get('/', [WatchlistController::class, 'index']);
 
     Route::controller(WatchlistController::class)->group(function () {
         Route::prefix('watchlist')->name('watchlist.')->group(function () {

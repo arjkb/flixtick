@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <!-- TODO: convert nav links to its own component -->
-                    <a class="nav-link @if(url()->current() === url('home')) active @endif" aria-current="page" href="{{ url('home') }}">Home</a>
+                    <a class="nav-link @if(url()->current() === url('/')) active @endif" aria-current="page" href="{{ url('/') }}">Home</a>
                     @if(auth()->check())
                     <form action="{{ url('auth/logout') }}" method="post">
                         @csrf
