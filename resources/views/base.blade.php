@@ -23,6 +23,7 @@
                 <div class="navbar-nav">
                     <!-- TODO: convert nav links to its own component -->
                     <a class="nav-link @if(url()->current() === url('/')) active @endif" aria-current="page" href="{{ url('/') }}">Home</a>
+                    <a class="nav-link @if(url()->current() === url('about')) active @endif" aria-current="page" href="{{ url('about') }}">About</a>
                     @if(auth()->check())
                     <form action="{{ url('auth/logout') }}" method="post">
                         @csrf

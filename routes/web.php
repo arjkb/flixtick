@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('about', fn () => view('about'));
+
 Route::prefix('auth')->group(function () {
     Route::prefix('signup')->group(function () {
         Route::get('', fn () => view('auth.signup'));
