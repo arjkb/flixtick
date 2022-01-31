@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function signup(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|string|min:3|unique:users,username',
+            'username' => 'required|string|min:3|unique:users,username|not_in:admin,administrator,owner,auth,manager',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required|string',
         ]);
