@@ -13,7 +13,7 @@
     @csrf
     <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" aria-describedby="validationServerUsernameFeedback">
+        <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" aria-describedby="validationServerUsernameFeedback" required>
         @error('username')
         <div id="validationServerUsernameFeedback" class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -21,7 +21,7 @@
 
     <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" aria-describedby="validationServerPasswordFeedback">
+        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" aria-describedby="validationServerPasswordFeedback" required>
         @error('password')
         <div id="validationServerPasswordFeedback" class="invalid-feedback">{{ $message }}</div>
         @enderror

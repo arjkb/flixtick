@@ -18,7 +18,7 @@
     @csrf
     <div class="col-12">
         <label class="visually-hidden" for="title">Title</label>
-        <input class="form-control @error('title') is-invalid @enderror" type="text" name="title" id="title" placeholder="Movie title" aria-describedby="validationServerTitleFeedback" autofocus>
+        <input class="form-control @error('title') is-invalid @enderror" type="text" name="title" id="title" placeholder="Movie title" aria-describedby="validationServerTitleFeedback" autofocus required>
         @error('title')
         <div id="validationServerTitleFeedback" class="invalid-feedback">{{ $message }}</div>
         @enderror
