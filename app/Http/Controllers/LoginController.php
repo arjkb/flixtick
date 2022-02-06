@@ -18,9 +18,11 @@ class LoginController extends Controller
     public function signup(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|string|min:3|unique:users,username|not_in:admin,administrator,owner,auth,manager',
+            'username' => 'required|string|min:3|unique:users,username|not_in:admin,administrator,owner,auth,manager|regex:/^[a-z0-9_]+$/',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required|string',
+        ], [
+            'username.regex' => 'The username must not contain spaces, capitals, or special characters other than underscore.',
         ]);
 
         $user = new User;
