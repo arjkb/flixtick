@@ -33,7 +33,7 @@
 <table class="table table-hover mt-3">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col" class="text-end">#</th>
             <th scope="col">Title</th>
             <th scope="col" class="d-none d-md-table-cell">Added On</th>
             <th scope="col">Action</th>
@@ -42,7 +42,7 @@
     <tbody>
         @foreach($unwatchedMovies as $watchlistitem)
         <tr>
-            <th scope="row">{{ $loop->iteration }}</th>
+            <th scope="row" class="text-end"> {{ $loop->iteration }}</th>
             <td>
                 <a href="{{ route('watchlist.show', ['id' => $watchlistitem->id]) }}">{{ $watchlistitem->movie->title }}</a>
             </td>
@@ -60,7 +60,7 @@
 
         @foreach($watchedMovies as $watchlistitem)
         <tr class="text-muted">
-            <th scope="row">{{ $loop->iteration + count($unwatchedMovies) }}</th>
+            <th scope="row" class="text-end">{{ $loop->iteration + count($unwatchedMovies) }}</th>
             <td>
                 <a class="link-secondary" href="{{ route('watchlist.show', ['id' => $watchlistitem->id]) }}">{{ $watchlistitem->movie->title }}</a>
                 <br><span class="text-muted"><small>Marked seen {{ $watchlistitem->marked_seen_at->diffForHumans() }}</small></span>
